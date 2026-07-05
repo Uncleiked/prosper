@@ -121,7 +121,7 @@ export default function Slide02Profile({ isActive }: SlideProps) {
             <h3 className="text-white font-semibold text-sm mb-1">
               Investment Analysis
             </h3>
-            <p className="text-white/50 text-xs leading-relaxed">
+            <p className="text-white/70 text-xs leading-relaxed">
               Finds high-potential opportunities early and turns complexity into
               results.
             </p>
@@ -152,7 +152,7 @@ export default function Slide02Profile({ isActive }: SlideProps) {
             <h3 className="text-white font-semibold text-sm mb-1">
               Market Strategy
             </h3>
-            <p className="text-white/50 text-xs leading-relaxed">
+            <p className="text-white/70 text-xs leading-relaxed">
               Reads economic shifts and guides actionable, decisive strategies.
             </p>
           </div>
@@ -171,7 +171,7 @@ export default function Slide02Profile({ isActive }: SlideProps) {
             <h3 className="text-white font-semibold text-sm mb-1">
               Portfolio Optimization
             </h3>
-            <p className="text-white/50 text-xs leading-relaxed">
+            <p className="text-white/70 text-xs leading-relaxed">
               Aligns real estate assets for stronger, more resilient returns.
             </p>
           </div>

@@ -106,7 +106,7 @@ export default function Slide06Book2({ isActive }: SlideProps) {
       {/* Header */}
       <div className="book2-header opacity-0 text-center mb-6 relative z-10">
         <p className="text-sm text-primary-600 uppercase tracking-[0.2em] mb-2 font-medium">
-          Strategic Insight
+          Strategic Insights
         </p>
         <h2
           className="text-3xl md:text-4xl lg:text-5xl font-bold text-white"

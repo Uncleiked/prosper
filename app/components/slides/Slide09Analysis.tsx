@@ -156,7 +156,7 @@ export default function Slide09Analysis({ isActive }: SlideProps) {
           <div className="section-label opacity-0 flex items-center gap-2 mb-3">
             <div className="w-1 h-5 bg-primary-400 rounded-full" />
             <span className="text-sm text-primary-400 uppercase tracking-wider font-semibold">
-              Digital Presence — Google Business
+              Digital Presence — Google scholar
             </span>
           </div>
 

@@ -44,18 +44,22 @@ function SlideIndicator({
   onClickSlide: (index: number) => void;
 }) {
   return (
-    <div className={clsx('fixed', 'right-3', 'md:right-6', 'top-1/2', '-translate-y-1/2', 'z-50', 'flex', 'flex-col', 'gap-2', 'md:gap-2.5')}>
+    <div className={clsx('fixed', 'right-2', 'md:right-4', 'top-1/2', '-translate-y-1/2', 'z-50', 'flex', 'flex-col', 'gap-1', 'md:gap-1.5')}>
       {Array.from({ length: TOTAL_SLIDES }, (_, i) => (
         <button
           key={i}
           onClick={() => onClickSlide(i)}
           aria-label={`Go to slide ${i + 1}`}
-          className={`rounded-full transition-all duration-500 cursor-pointer hover:scale-125 ${
-            activeSlide === i
-              ? "w-2 h-6 md:w-3 md:h-8 bg-primary-400 shadow-[0_0_16px_rgba(52,211,153,0.6)]"
-              : "w-2 h-2 md:w-3 md:h-3 bg-white/25 hover:bg-white/50"
-          }`}
-        />
+          className="relative p-2 md:p-3 group cursor-pointer focus:outline-none"
+        >
+          <div
+            className={`rounded-full transition-all duration-500 mx-auto ${
+              activeSlide === i
+                ? "w-2 h-6 md:w-3 md:h-8 bg-primary-400 shadow-[0_0_16px_rgba(52,211,153,0.6)]"
+                : "w-2 h-2 md:w-3 md:h-3 bg-white/30 group-hover:bg-white/60 group-hover:scale-125"
+            }`}
+          />
+        </button>
       ))}
     </div>
   );
@@ -67,6 +71,7 @@ export default function SlideContainer() {
   const [activeSlide, setActiveSlide] = useState(0);
   const activeSlideRef = useRef(0);
   const triggerRef = useRef<ScrollTrigger | null>(null);
+  const isProgrammaticScrollRef = useRef(false);
 
   /* Scroll to a specific slide when clicking a dot */
   const scrollToSlide = useCallback((index: number) => {
@@ -74,10 +79,19 @@ export default function SlideContainer() {
     if (!st) return;
     const progress = index / (TOTAL_SLIDES - 1);
     const scrollPos = st.start + progress * (st.end - st.start);
+    
+    isProgrammaticScrollRef.current = true;
+    
     gsap.to(window, {
-      scrollTo: { y: scrollPos },
-      duration: 0.8,
+      scrollTo: { y: scrollPos, autoKill: false },
+      duration: 1.2,
       ease: "power2.inOut",
+      onComplete: () => {
+        // Delay re-enabling snap to allow any lingering scrub animations to settle
+        setTimeout(() => {
+          isProgrammaticScrollRef.current = false;
+        }, 100);
+      }
     });
   }, []);
 
@@ -112,7 +126,11 @@ export default function SlideContainer() {
           pin: true,
           anticipatePin: 1,
           snap: {
-            snapTo: 1 / (TOTAL_SLIDES - 1),
+            snapTo: (value) => {
+              // Return the current value if scrolling programmatically, effectively disabling snapping
+              if (isProgrammaticScrollRef.current) return value;
+              return Math.round(value * (TOTAL_SLIDES - 1)) / (TOTAL_SLIDES - 1);
+            },
             duration: { min: 0.3, max: 0.7 },
             ease: "power3.inOut",
             delay: 0.05,

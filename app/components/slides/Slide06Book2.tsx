@@ -112,7 +112,7 @@ export default function Slide06Book2({ isActive }: SlideProps) {
           className="text-3xl md:text-4xl lg:text-5xl font-bold text-white"
           style={{ fontFamily: "var(--font-outfit)" }}
         >
-          Green <span className="text-primary-500">Cow</span> Framework
+          Purple <span className="text-primary-500">Cow</span> Daniel
         </h2>
         <p className="text-sm text-primary-600/50 mt-2 font-light">
           Adapted from Seth Godin&apos;s Purple Cow

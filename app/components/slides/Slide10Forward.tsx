@@ -181,7 +181,7 @@ export default function Slide10Forward({ isActive }: SlideProps) {
         {/* Right Side: Image */}
         <div className="forward-image opacity-0 w-full h-[500px] lg:h-[700px] relative rounded-[2rem] overflow-hidden glass-card img-bw-hover hidden lg:block">
           <Image
-            src="https://images.unsplash.com/photo-1556761175-129418cb210d?q=80&w=1932&auto=format&fit=crop"
+            src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=2070&auto=format&fit=crop"
             alt="Business Team Handshake"
             fill
             className="object-cover"
